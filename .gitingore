@@ -1,4 +1,5 @@
 .vscode/
+.ci/
 .idea/
 *.iml
 target/
