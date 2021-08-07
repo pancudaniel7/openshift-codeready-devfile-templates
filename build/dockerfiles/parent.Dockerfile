@@ -25,4 +25,12 @@ RUN wget https://archive.apache.org/dist/pulsar/pulsar-2.7.1/apache-pulsar-2.7.1
     rm -rf apache-pulsar-2.7.1-bin.tar.gz && \
     echo 'PATH=$PATH:/opt/apache-pulsar-2.7.1/bin' > /etc/environment
 
+RUN sudo apt update;sudo apt install -y gnupg && \
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3EFE0E0A2F2F60AA && \
+    echo "deb http://ppa.launchpad.net/tektoncd/cli/ubuntu eoan main"|sudo tee /etc/apt/sources.list.d/tektoncd-ubuntu-cli.list && \
+    sudo apt update && sudo apt install -y tektoncd-cli=v0.20.0
+
+RUN curl -sL https://istio.io/downloadIstioctl | sh - && \
+    export PATH=$PATH:$HOME/.istioctl/bin
+
 USER jboss
