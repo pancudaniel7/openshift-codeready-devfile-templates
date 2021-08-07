@@ -25,6 +25,9 @@ RUN wget https://archive.apache.org/dist/pulsar/pulsar-2.7.1/apache-pulsar-2.7.1
     rm -rf apache-pulsar-2.7.1-bin.tar.gz && \
     echo 'PATH=$PATH:/opt/apache-pulsar-2.7.1/bin' > /etc/environment
 
+RUN curl -sSL http://github.com/ahmetb/kubectx/archive/v0.3.1.tar.gz | tar -C /usr/local/ -xz && \
+    export PATH=/usr/local/kubectx-0.3.1:$PATH
+
 RUN sudo apt update;sudo apt install -y gnupg && \
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3EFE0E0A2F2F60AA && \
     echo "deb http://ppa.launchpad.net/tektoncd/cli/ubuntu eoan main"|sudo tee /etc/apt/sources.list.d/tektoncd-ubuntu-cli.list && \
